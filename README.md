@@ -1,6 +1,19 @@
 # dynet_tutorial
 
+## Cloning the repository
+
+You can download a copy of this code with the following command:
+
+```
+git clone https://github.com/michaelcapizzi/dynet_tutorial.git
+```
+
 ## Environment Setup
+
+It is recommended that you use `virtual environment`s for all `python` projects.
+
+For more informatio on `conda`, see [here](https://conda.io/docs/intro.html)
+For more information on `virtualenv`, see [here](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
 
 This repository is built with `python 3` and has the following requirements:
 
