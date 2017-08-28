@@ -95,7 +95,7 @@ make -j 2
 
 ```
 cd python
-python setup.py install
+python ../../setup.py build --build-dir=.. --skip-build install
 ```
 
 #### Testing it
