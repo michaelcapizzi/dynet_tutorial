@@ -55,7 +55,10 @@ As a result, installing `dynet` requires three steps:
  2. compiling the `C++` code
  3. installing the `python` wrapper
  
-Anytime you re-install or update `dynet`, you will be required to do steps 2 and 3.
+Anytime you re-install or update `dynet`, you will be required to:
+ 1. `git pull` from the `dynet` directory
+ 2. compile the `C++` code (step 2 above)
+ 3. reinstall the `python` wrapper (step 3 above)
 
 #### Getting system requirements
 
