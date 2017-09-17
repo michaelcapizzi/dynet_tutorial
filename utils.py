@@ -71,6 +71,18 @@ def parse_smsspam_data(path_to_smsspam_file):
     return tokenized_docs, labels
 
 
+def build_w2i_lookup(training_corpus):
+    lookup = {"<unk>": 0}
+    c = 1
+    for doc in training_corpus:
+        for word in doc:
+            word = word.lower()
+            if word not in lookup:
+                c += 1
+                lookup[word] = c
+    return lookup
+
+
 def load_pretrained_embeddings(path_to_file, take=None):
     embedding_size = None
     embedding_matrix = None
@@ -84,7 +96,6 @@ def load_pretrained_embeddings(path_to_file, take=None):
                     c = 1
                     pass
             else:
-                c = 1
                 # check for delimiter
                 if "\t" in line:
                     delimiter = "\t"
