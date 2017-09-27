@@ -101,7 +101,7 @@ def load_pretrained_embeddings(path_to_file, take=None):
                     delimiter = "\t"
                 else:
                     delimiter = " "
-                if take and c <= take:
+                if (take and c <= take) or not take:
                     # split line
                     line_split = line.rstrip().split(delimiter)
                     # extract word and vector
