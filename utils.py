@@ -71,6 +71,41 @@ def parse_smsspam_data(path_to_smsspam_file):
     return tokenized_docs, labels
 
 
+
+def import_pos(path_to_root):
+    print("loading training data")
+    train_tokens, train_labels = parse_pos_data(
+        path.join(path_to_root, "notebooks/wsj_pos_data/wsj_train.txt")
+    )
+    print("loading dev data")
+    dev_tokens, dev_labels = parse_pos_data(
+        path.join(path_to_root, "notebooks/wsj_pos_data/wsj_dev.txt")
+    )
+    print("loading test data")
+    test_tokens, test_labels = parse_pos_data(
+        path.join(path_to_root, "notebooks/wsj_pos_data/wsj_test.txt")
+    )
+    return train_tokens, train_labels, dev_tokens, dev_labels, test_tokens, test_labels
+
+
+def parse_pos_data(path_to_wsj_file):
+    tokens = []
+    labels = []
+    with open(path_to_wsj_file, "r") as f:
+        for line in f:
+            sent_tokens = []
+            sent_labels = []
+            line_split = line.rstrip().split()
+            for tp in line_split:
+                token, pos = tp.split("/")
+                sent_tokens.append(token)
+                sent_labels.append(pos)
+            tokens.append(sent_tokens)
+            labels.append(sent_labels)
+    print("parsed {} sentences".format(len(tokens)))
+    return tokens, labels
+
+
 def build_w2i_lookup(training_corpus):
     lookup = {"<unk>": 0}
     c = 1
@@ -119,3 +154,14 @@ def load_pretrained_embeddings(path_to_file, take=None):
                         embedding_matrix[1] = vector
                     c += 1
     return embedding_matrix, lookup
+
+
+def labels_to_index_map(all_training_labels):
+    dict_ = {}
+    c = 0
+    for sent in all_training_labels:
+        for label in sent:
+            if label not in dict_:
+                dict_[label] = c
+                c+=1
+    return dict_
