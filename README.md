@@ -19,6 +19,7 @@ This repository is built with `python 3` and has the following requirements:
 
  - `numpy`
  - `jupyter`
+ - `matplotlib`
  
 They can be installed by running `pip install -r requirements.txt`
 
